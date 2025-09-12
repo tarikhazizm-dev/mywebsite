@@ -1,46 +1,60 @@
-<!DOCTYPE html>
+<!doctype html>
 <html>
+    <head>
+        <meta charset="utf-8" />
+        <title>Event Planner</title>
+        <style>
+            body { font-family: system-ui, sans-serif; max-width: 720px; margin: 2rem auto; }
+            label { display:block; margin:.5rem 0 .25rem; }
+            input, textarea { width:100%; padding:.5rem; }
+            button { margin-top: 1rem; padding:.6rem 1rem; cursor:pointer; }
+            .summary { margin-top: 1.5rem; white-space: pre-wrap; border:1px solid #ddd; padding:1rem; border-radius:.5rem; }
+        </style>
+    </head>
+    <body>
+        <h1>Event Planner</h1>
 
-<head>
-  <title>Quinoa and Kale Salad Recipe</title>
-  <link href="style.css" type="text/css" rel="stylesheet">
-</head>
+        <label>Name</label>
+        <input id="name" type="text" />
 
-<body>
+        <label>Type of event</label>
+        <input id="type" type="text" placeholder="birthday party, wedding, …" />
 
-  <img src="https://content.codecademy.com/courses/freelance-1/unit-2/salad.jpg" alt="Kale Caeasar Salad"/>
-  <h1>Kale Caesar Quinoa Salad with Roasted Chicken</h1>
-  <p class="description">Kale and quinoa provide a healthy base for roasted chicken topped with a light Caesar sauce.</p>
+        <label>Location</label>
+        <input id="location" type="text" />
 
-  <p id="cook-time">Total time: 45 minutes</p>
+        <label>Main theme / color</label>
+        <input id="theme" type="text" />
 
-  <h2>Ingredients</h2>
-  <ul class="ingredients">
-    <li>1/4 cup kale</li>
-    <li>1 cup Quinoa</li>
-    <li>2 tbsp Olive Oil</li>
-    <li>1 chicken breast</li>
-    <li>Caesar Dressing</li>
-  </ul>
+        <label>Key guest / speaker</label>
+        <input id="speaker" type="text" />
 
-  <h2>Preparation</h2>
-  <ol>
-    <li>
-      <p>Prepare quinoa and roast chicken until golden brown and 165 in middle.</p>
-      <p class="time">Time: 40 minutes</p>
-    </li>
-    <li>
-      <p>Toss quinoa, chicken, kale, and Caesar dressing until coated.</p>
-      <p class="time">Time: 4 minutes</p>
-    </li>
-    <li>
-      <p>Add walnuts and olive oil as garnish.</p>
-      <p class="time">Time: 1 minute</p>
-    </li>
-  </ol>
+        <label>Guests expected</label>
+        <input id="guests" type="number" min="0" />
 
-  <p class="citation">Find this recipe and more <a href="http://www.myrecipes.com/recipe/kale-caesar-salad-chicken" target="_blank" class="external-link">here</a>.</p>
+        <button id="build">Build Summary</button>
 
-</body>
+        <div id="out" class="summary"></div>
 
+        <script>
+            document.getElementById('build').addEventListener('click', () => {
+                const name = document.getElementById('name').value.trim();
+                const type = document.getElementById('type').value.trim();
+                const loc = document.getElementById('location').value.trim();
+                const theme = document.getElementById('theme').value.trim();
+                const spk = document.getElementById('speaker').value.trim();
+                const guests = document.getElementById('guests').value.trim();
+
+                const text =
+`Hello ${name}!
+Your ${type} is all set to happen at ${loc}.
+You can expect around ${guests} guests to join the celebration.
+The event will be adorned with a ${theme} theme, making it a memorable day.
+Special guest ${spk} will be the highlight of the event.
+We are looking forward to helping you make your event successful!`;
+
+                document.getElementById('out').textContent = text;
+            });
+        </script>
+    </body>
 </html>
